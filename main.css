@@ -1,0 +1,190 @@
+/*
+===================================================
+CUSTOM STYLES
+===================================================
+*/
+
+body {
+	background: #FFEFF9;
+	color: #2F4F4F;
+	font: 400 16px/22px "Montserrat", Helvetica, Arial, sans-serif;
+}
+
+/*
+===================================================
+LAYOUT
+===================================================
+*/
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+.container {
+	width: 50%;
+	margin: 0 auto;
+	padding: 10px;
+	text-align: center;
+}
+
+.main-content {
+	border-bottom: 2px solid #2F4F4F;
+}
+
+#tweets-container {
+	text-align: left;
+	padding: 5px 5px 30px 5px;
+}
+
+.tweet {
+	padding: 5px;
+}
+/*
+===================================================
+CLEARFIX
+===================================================
+*/
+
+.group:before,
+.group:after {
+	content: "";
+	display: table;
+}
+
+.group:after {
+	clear: both;
+}
+
+.group {
+	clear: both;
+	*zoom: 1;
+}
+
+/*
+===================================================
+TYPOGRAPHY
+===================================================
+*/
+
+#title {
+	font-size: 70px;
+	font-weight: 500;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	text-align: center;
+}
+
+.author {
+	font-size: 12px;
+	text-align: center;
+}
+
+/*
+===================================================
+LINKS
+===================================================
+*/
+
+a {
+	font-weight: bold;
+}
+
+a:hover {
+	color: #8E968D;
+}
+
+/*
+===================================================
+TWEETS
+===================================================
+*/
+.username,
+.content {
+	display: inline-block;
+}
+
+.username {
+	padding-right: 5px;
+}
+
+.timestamp {
+	font-size: 14px;
+}
+
+.spotlight {
+	background-color: #88B284;
+}
+
+/*
+===================================================
+BUTTONS
+===================================================
+*/
+
+#update-button {
+	font-size: 16px;
+	font-weight: bold;
+	background-color: #B296A8;
+	color: #2F4F4F;
+	border: 2px solid #2F4F4F;
+}
+
+#update-button:hover {
+	color: #8E968D;
+}
+/*
+===================================================
+MAIN HEADER
+===================================================
+*/
+
+.main-header {
+	background-color: #B296A8;
+	padding-top: 30px;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+}
+
+
+/*
+===================================================
+PRIMARY FOOTER
+===================================================
+*/
+
+footer {
+	background-color: #B296A8;
+	padding: 30px 30px 0 30px;
+	text-align: left;
+}
+
+footer p {
+	padding-top: 75px;
+	height: 150px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

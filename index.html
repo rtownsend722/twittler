@@ -1,24 +1,108 @@
+
+
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="author" content="Rebecca Townsend">
+    <meta name="description" content="Display tweets from data_generator.js">
+    <title>Twittler</title>
+    <link rel="stylesheet" href="css-reset.css">
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500" rel="stylesheet">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
   </head>
   <body>
+
+    <header class="main-header">
+      <section class="container">
+        <h1 id="title">Twittler</h1>
+      </section>
+      <h5 class="author">by Rebecca Townsend</h5>
+    </header>
+
+    <div class=main-content>
+      <div class="container">
+        <button id="update-button">Update Feed</button>
+      </div>
+
+      <div class="container" id="tweets-container"></div>
+    </div>
+
+    <footer>
+      <p class="author">Rebecca Townsend 2017</p>
+    </footer>
+
     <script>
 
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+        //create var to store the body element
+        
+        //Change the content of all body elements to an empty string
+        
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+        /*Add tweets to page in reverse chrono order*/
+        var updateFeed = function(user) {
+          //Create var to store html elements for tweets
+          var $tweets = $('#tweets-container');
+          $tweets.html('');
+
+          //Define all other tweet variables
+          var tweet;
+          var $tweet;
+          var $user;
+          var $content;
+          var $timeStamp;
+          var base;
+          var index;
+
+          //Define conditions for user
+          if (user === 'all') {
+            //use streams.home to update all user tweets
+            base = streams.home;
+          } else if (user) {
+            //if we want a specific user's tweets...
+            base = streams.users[user];
+          }
+
+
+          for (index = base.length - 1; index >= 0; index -= 1) {
+         
+            //Set up html elements
+            tweet = base[index];
+            $tweet = $('<div class="tweet"></div>');
+            $user = $('<a class="username"></a>');
+            $user.data('handle', tweet.user);
+            $content = $('<p class="content"></p>')
+            $timeStamp = $('<div class="timestamp"></div>')
+
+            //add text to elements
+            $user.text('@' + tweet.user + ': ')
+            $content.text(tweet.message);
+            $timeStamp.text(tweet.created_at);
+
+            //Append elements to page
+            $user.appendTo($tweet);
+            $content.appendTo($tweet);
+            $timeStamp.appendTo($tweet);
+            $tweet.appendTo($tweets);
+          }
+
+        //Set up click handler for click on username
+        $('.username').on('click', function() {
+          var handle = $(this).data('handle');
+          updateFeed($(this).data('handle'));
+        });
+      }
+
+        //Initial update when page loads
+        updateFeed('all');
+
+        //click handler for Update Feed button
+        $('#update-button').on('click', function() {
+          $('.tweet').remove();
+          updateFeed('all');
+        });
 
       });
 
