@@ -1,16 +1,12 @@
 $(document).ready(function(){
-  //create var to store the body element
-  
-  //Change the content of all body elements to an empty string
-  
 
-  /*Add tweets to page in reverse chrono order*/
+  //Add tweets to page in reverse chrono order
   var updateFeed = function(user) {
-    //Create var to store html elements for tweets
+
     var $tweets = $('#tweets-container');
     $tweets.html('');
 
-    //Define all other tweet variables
+    //Tweet Building Variables
     var tweet;
     var $tweet;
     var $user;
@@ -19,12 +15,12 @@ $(document).ready(function(){
     var base;
     var index;
 
-    //Define conditions for user
+    //User Conditions
     if (user === 'all') {
-      //use streams.home to update all user tweets
+      //source from all user tweets
       base = streams.home;
     } else if (user) {
-      //if we want a specific user's tweets...
+      //source from specific user
       base = streams.users[user];
     }
 
@@ -51,7 +47,7 @@ $(document).ready(function(){
       $tweet.appendTo($tweets);
     }
 
-  //Set up click handler for click on username
+  //Username Click Handler
   $('.username').on('click', function() {
     var handle = $(this).data('handle');
     updateFeed($(this).data('handle'));
@@ -61,7 +57,7 @@ $(document).ready(function(){
   //Initial update when page loads
   updateFeed('all');
 
-  //click handler for Update Feed button
+  //Update Feed Button Click Handler
   $('#update-button').on('click', function() {
     $('.tweet').remove();
     updateFeed('all');
