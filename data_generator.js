@@ -3,6 +3,7 @@
  * You can safely leave this file untouched, and confine your changes to index.html.
  */
 
+
 // set up data structures
 window.streams = {};
 streams.home = [];
@@ -42,7 +43,7 @@ var generateRandomTweet = function(){
   var tweet = {};
   tweet.user = randomElement(users);
   tweet.message = randomMessage();
-  tweet.created_at = jQuery.timeago(new Date());
+  tweet.created_at = new Date();
   addTweet(tweet);
 };
 
@@ -58,6 +59,10 @@ scheduleNextTweet();
 
 // utility function for letting students add "write a tweet" functionality
 // (note: not used by the rest of this file.)
+window.visitor = "guest";
+streams.users[window.visitor] = [];
+
+
 var writeTweet = function(message){
   if(!visitor){
     throw new Error('set the global visitor property!');
@@ -65,5 +70,6 @@ var writeTweet = function(message){
   var tweet = {};
   tweet.user = visitor;
   tweet.message = message;
+  tweet.created_at = new Date();
   addTweet(tweet);
 };

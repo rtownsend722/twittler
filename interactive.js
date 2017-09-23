@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
   //Add tweets to page in reverse chrono order
   var updateFeed = function(user) {
 
@@ -38,7 +39,8 @@ $(document).ready(function(){
       //add text to elements
       $user.text('@' + tweet.user + ': ')
       $content.text(tweet.message);
-      $timeStamp.text(tweet.created_at);
+      friendlyTimeStamp = jQuery.timeago(tweet.created_at);
+      $timeStamp.text(friendlyTimeStamp);
 
       //Append elements to page
       $user.appendTo($tweet);
@@ -47,12 +49,12 @@ $(document).ready(function(){
       $tweet.appendTo($tweets);
     }
 
-  //Username Click Handler
-  $('.username').on('click', function() {
-    var handle = $(this).data('handle');
-    updateFeed($(this).data('handle'));
-  });
-}
+    //Username Click Handler
+    $('.username').on('click', function() {
+      var handle = $(this).data('handle');
+      updateFeed($(this).data('handle'));
+    });
+  }
 
   //Initial update when page loads
   updateFeed('all');
@@ -61,6 +63,16 @@ $(document).ready(function(){
   $('#update-button').on('click', function() {
     $('.tweet').remove();
     updateFeed('all');
+  });
+
+  
+  //Guest Tweet Event Handler
+  $('input').on('keypress', function(key) {
+      if (key.which === 13) {
+        var $guestTweet = ($(this).val());
+        writeTweet($guestTweet);
+        updateFeed('all');
+      }
   });
 
 });
