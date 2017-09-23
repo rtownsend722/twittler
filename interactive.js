@@ -63,4 +63,13 @@ $(document).ready(function(){
     updateFeed('all');
   });
 
+  //Guest Tweet Event Handler
+  $('input').on('keypress', function(key) {
+      if (key.which === 13) {
+        var $guestTweet = ($(this).val());
+        writeTweet($guestTweet);
+        updateFeed('all');
+      }
+  });
+
 });

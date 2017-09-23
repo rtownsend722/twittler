@@ -51,6 +51,15 @@ LAYOUT
 	padding: 5px;
 }
 
+#guest-tweet {
+	display: block;
+	width: 50%;
+	background-color: #BEE8D7;
+	margin: 15px auto 0 auto;
+	border: 2px solid #2F4F4F;
+
+	}
+
 /*
 ===================================================
 TYPOGRAPHY
@@ -73,6 +82,10 @@ TYPOGRAPHY
 .description {
 	font-size: 12px;
 	text-align: center;
+}
+
+#guest-tweet {
+	font-size: 14px;
 }
 
 /*
