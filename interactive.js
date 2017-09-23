@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
-  //Add tweets to page in reverse chrono order
+  /*Function Definitions*/
   var updateFeed = function(user) {
 
     var $tweets = $('#tweets-container');
     $tweets.html('');
 
-    //Tweet Building Variables
+    /*Tweet Building Variables*/
     var tweet;
     var $tweet;
     var $user;
@@ -15,15 +15,20 @@ $(document).ready(function(){
     var base;
     var index;
 
+    /*Function Definitions*/
+    var showUserTweets = function() {
+      var handle = $(this).data('handle');
+      updateFeed($(this).data('handle'));
+    };
+
     //User Conditions
     if (user === 'all') {
-      //source from all user tweets
+      //tweet base - all user tweets
       base = streams.home;
     } else if (user) {
-      //source from specific user
+      //tweet base - specific user
       base = streams.users[user];
     }
-
 
     for (index = base.length - 1; index >= 0; index -= 1) {
    
@@ -38,7 +43,8 @@ $(document).ready(function(){
       //add text to elements
       $user.text('@' + tweet.user + ': ')
       $content.text(tweet.message);
-      $timeStamp.text(tweet.created_at);
+      var $prettyTimeStamp = jQuery.timeago(tweet.created_at);
+      $timeStamp.text($prettyTimeStamp);
 
       //Append elements to page
       $user.appendTo($tweet);
@@ -47,29 +53,36 @@ $(document).ready(function(){
       $tweet.appendTo($tweets);
     }
 
-  //Username Click Handler
-  $('.username').on('click', function() {
-    var handle = $(this).data('handle');
-    updateFeed($(this).data('handle'));
-  });
-}
+    /*Internal Click Handlers*/
+    $('.username').on('click', showUserTweets);
+  }
 
-  //Initial update when page loads
-  updateFeed('all');
-
-  //Update Feed Button Click Handler
-  $('#update-button').on('click', function() {
+  var clearFeed = function() {
     $('.tweet').remove();
+  };
+
+  var postGuestTweet = function() {
+    var $guestTweet = ($('#guest-tweet').val());
+    writeTweet($guestTweet);
+    updateFeed('all');
+  };
+
+  /*Event Handlers*/
+  $('#update-button').on('click', function() {
+    clearFeed();
     updateFeed('all');
   });
 
-  //Guest Tweet Event Handler
-  $('input').on('keypress', function(key) {
-      if (key.which === 13) {
-        var $guestTweet = ($(this).val());
-        writeTweet($guestTweet);
-        updateFeed('all');
-      }
+  
+  $('#guest-tweet').on('keypress', function(key) {
+    if (key.which === 13) {
+      postGuestTweet();
+      $('#guest-tweet').val("What's on your mind?");
+
+    }
   });
+
+  /*Initial update when page loads*/
+  updateFeed('all');
 
 });

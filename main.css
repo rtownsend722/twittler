@@ -57,8 +57,11 @@ LAYOUT
 	background-color: #BEE8D7;
 	margin: 15px auto 0 auto;
 	border: 2px solid #2F4F4F;
-
 	}
+
+#guest-tweet:focus {
+	outline: none;
+}
 
 /*
 ===================================================
@@ -100,6 +103,7 @@ a {
 
 a:hover {
 	color: #8E968D;
+	cursor: pointer;
 }
 
 /*
@@ -130,13 +134,14 @@ BUTTONS
 	width: 30%;
 	font-size: 16px;
 	font-weight: bold;
-	background-color: #B296A8;
+	background-color: #BEE8D7;
 	color: #2F4F4F;
 	border: 2px solid #2F4F4F;
 }
 
 #update-button:hover {
-	background-color: #BEE8D7;
+	background-color: #B296A8;
+	cursor: pointer;
 }
 /*
 ===================================================

@@ -42,7 +42,7 @@ var generateRandomTweet = function(){
   var tweet = {};
   tweet.user = randomElement(users);
   tweet.message = randomMessage();
-  tweet.created_at = jQuery.timeago(new Date());
+  tweet.created_at = new Date();
   addTweet(tweet);
 };
 
@@ -68,5 +68,6 @@ var writeTweet = function(message){
   var tweet = {};
   tweet.user = visitor;
   tweet.message = message;
+  tweet.created_at = new Date();
   addTweet(tweet);
 };
